@@ -1,6 +1,8 @@
 package edu.northeastern.numad25sp_senaytilahun;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,14 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    // method to display the About me toast
+    public void showToast(View view) {
+        String name = getString(R.string.name);
+        String email = getString(R.string.email);
+        String aboutMeMsg = getString(R.string.about_me_toast_message, name, email);
+
+        Toast.makeText(this, aboutMeMsg, Toast.LENGTH_SHORT).show();
     }
 }

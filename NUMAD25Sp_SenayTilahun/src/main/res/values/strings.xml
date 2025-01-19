@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">NUMAD25Sp_SenayTilahun</string>
+    <string name="about_me">About Me</string>
+    <string name="hello_world">Hello World!!</string>
+
+    <!-- New string for the toast message -->
+    <string name="name">Senay Tilahun</string>
+    <string name="email">tilahun.s@northeastern.edu</string>
+    <string name="about_me_toast_message">Name: %1$s\nEmail: %2$s</string>
+
 </resources>
