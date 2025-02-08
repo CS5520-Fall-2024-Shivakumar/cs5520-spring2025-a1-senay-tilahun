@@ -1,5 +1,6 @@
 package edu.northeastern.numad25sp_senaytilahun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -31,5 +32,11 @@ public class MainActivity extends AppCompatActivity {
         String aboutMeMsg = getString(R.string.about_me_toast_message, name, email);
 
         Toast.makeText(this, aboutMeMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    // method to handle quic calc button click
+    public void openQuicCalc(View view) {
+        Intent intent = new Intent(this, QuicCalcActivity.class);
+        startActivity(intent);
     }
 }

@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD25Sp_SenayTilahun"
         tools:targetApi="31">
+        <activity
+            android:name=".QuicCalcActivity"
+            android:exported="false" />
+
         <receiver
             android:name=".NewAppWidget"
             android:exported="false">
