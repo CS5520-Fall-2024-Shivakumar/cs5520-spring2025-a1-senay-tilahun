@@ -7,5 +7,8 @@
     <string name="name">Senay Tilahun</string>
     <string name="email">tilahun.s@northeastern.edu</string>
     <string name="about_me_toast_message">Name: %1$s\nEmail: %2$s</string>
+    <string name="appwidget_text">First App Widget</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 
 </resources>
