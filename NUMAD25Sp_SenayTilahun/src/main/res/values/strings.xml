@@ -32,6 +32,8 @@
     <string name="contacts_collector">Contacts Collector</string>
     <string name="contacts_collector_page">Contacts Collector Page</string>
     <string name="add_contact">Add Contact</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="delete_contact">Delete Contact</string>
 
 
 </resources>

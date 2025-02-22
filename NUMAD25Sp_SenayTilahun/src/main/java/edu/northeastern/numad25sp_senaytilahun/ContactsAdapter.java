@@ -21,13 +21,13 @@ import java.util.List;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactViewHolder> {
 
-    private final List<Contact> contactList;
+    private final List<Contact> contacts;
     private final Context context;
 
     // Constructor
     public ContactsAdapter(Context context, List<Contact> contactList) {
         this.context = context;
-        this.contactList = contactList;
+        this.contacts = contactList;
     }
 
     @NonNull
@@ -42,7 +42,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
         // Get the contact at this position
-        Contact contact = contactList.get(position);
+        Contact contact = contacts.get(position);
 
         // Display the contact name and phone number
         holder.nameTextView.setText(contact.getName());
@@ -57,14 +57,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
         // Delete contact
         holder.deleteButton.setOnClickListener(v -> {
-            Contact removedContact = contactList.get(position);
-            contactList.remove(position);
+            Contact removedContact = contacts.get(position);
+            contacts.remove(position);
             notifyItemRemoved(position);
 
             // Show Snackbar for undo action
             Snackbar.make(holder.itemView, "Contact deleted", Snackbar.LENGTH_LONG)
                     .setAction("Undo", view -> {
-                        contactList.add(position, removedContact);
+                        contacts.add(position, removedContact);
                         notifyItemInserted(position);
                     })
                     .show();
@@ -78,7 +78,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
     @Override
     public int getItemCount() {
-        return contactList.size();
+        return contacts.size();
     }
 
     private void showEditContactDialog(Contact contact, int position) {
@@ -104,7 +104,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
 
                     if (!updatedName.isEmpty() && !updatedPhone.isEmpty()) {
                         // Update the contact in the list
-                        contactList.set(position, new Contact(updatedName, updatedPhone));
+                        contacts.set(position, new Contact(updatedName, updatedPhone));
                         notifyItemChanged(position);
                         Toast.makeText(context, "Contact updated", Toast.LENGTH_SHORT).show();
                     } else {

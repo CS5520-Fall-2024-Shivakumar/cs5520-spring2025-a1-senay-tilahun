@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ContactsCollectorActivity extends AppCompatActivity {
     private ContactsAdapter contactsAdapter;
-    private List<Contact> contactList;
+    private List<Contact> contacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,31 +39,32 @@ public class ContactsCollectorActivity extends AppCompatActivity {
         });
 
         // init contact list data structure and RecyclerView
-        contactList = new ArrayList<>();
+        contacts = new ArrayList<>();
 
         // restore saved contacts if available
         // this is for when screen is rotated
         if (savedInstanceState != null) {
-            contactList = (ArrayList<Contact>) savedInstanceState.getSerializable("contacts");
+            contacts = (ArrayList<Contact>) savedInstanceState.getSerializable("contacts");
         }
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_contacts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        contactsAdapter = new ContactsAdapter(this, contactList);
+        contactsAdapter = new ContactsAdapter(this, contacts);
         recyclerView.setAdapter(contactsAdapter);
 
         // set up the + FAB button
-        FloatingActionButton fab = findViewById(R.id.fab_add_contact);
-        fab.setOnClickListener(view -> showAddContactDialog());
+        FloatingActionButton fabButton = findViewById(R.id.fab_add_contact);
+        fabButton.setOnClickListener(view -> showAddContactDialog());
 
         // mskr sure back button works correct whenpresses with OnBackPressedDispatcher
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     getSupportFragmentManager().popBackStack();
                 } else {
-                    finish(); // Close the activity
+                    finish();
                 }
             }
         });
@@ -72,7 +73,8 @@ public class ContactsCollectorActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("contacts", new ArrayList<>(contactList)); // Save list
+        // Save list - for later user - orienttaion
+        outState.putSerializable("contacts", new ArrayList<>(contacts));
     }
 
     private void showAddContactDialog() {
@@ -80,7 +82,7 @@ public class ContactsCollectorActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogView = inflater.inflate(R.layout.dialog_add_contact, null);
 
-        // Get references to EditText fields
+        // wire the references to EditText fields to save alter
         EditText editTextName = dialogView.findViewById(R.id.edit_text_name);
         EditText editTextPhone = dialogView.findViewById(R.id.edit_text_phone);
 
@@ -92,19 +94,19 @@ public class ContactsCollectorActivity extends AppCompatActivity {
                     String name = editTextName.getText().toString().trim();
                     String phone = editTextPhone.getText().toString().trim();
 
-                    // Validate input
+                    // Validate input - make sure the fields are not empty when submitedd
                     if (!name.isEmpty() && !phone.isEmpty()) {
                         Contact newContact = new Contact(name, phone);
-                        contactList.add(newContact);
+                        contacts.add(newContact);
                         // notify the adapter to update thee RecyclerView
-                        contactsAdapter.notifyItemInserted(contactList.size() - 1);
+                        contactsAdapter.notifyItemInserted(contacts.size() - 1);
                         // show snackbar for success
                         Snackbar.make(
                                 findViewById(R.id.main), "Contact saved!",
                                         Snackbar.LENGTH_LONG)
                                 .setAction("Undo", v -> {
-                                    contactList.remove(contactList.size() - 1);
-                                    contactsAdapter.notifyItemRemoved(contactList.size());
+                                    contacts.remove(contacts.size() - 1);
+                                    contactsAdapter.notifyItemRemoved(contacts.size());
                                 })
                                 .show();
                     } else {
