@@ -24,14 +24,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_about_me"
         android:layout_width="115dp"
         android:layout_height="63dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="304dp"
         android:layout_marginEnd="161dp"
         android:layout_marginBottom="267dp"
-        android:onClick="showToast"
+        android:onClick="openAboutMe"
         android:text="@string/about_me"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:text="@string/quic_calc"
         android:onClick="openQuicCalc"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button_about_me"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.1" />
