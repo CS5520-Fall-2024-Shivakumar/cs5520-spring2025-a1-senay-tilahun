@@ -29,5 +29,9 @@
     <string name="CALC">CALC</string>
     <string name="error">Error</string>
     <string name="about_me_information">About Me Information</string>
+    <string name="contacts_collector">Contacts Collector</string>
+    <string name="contacts_collector_page">Contacts Collector Page</string>
+    <string name="add_contact">Add Contact</string>
+
 
 </resources>
