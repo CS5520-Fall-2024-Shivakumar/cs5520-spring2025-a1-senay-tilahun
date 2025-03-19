@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPrimeSearch(View view) {
-        Intent intent = new Intent(this, PrimeSearchActivity.class);
+    public void openFindPrimes(View view) {
+        Intent intent = new Intent(this, FindPrimeActivity.class);
         startActivity(intent);
     }
 
