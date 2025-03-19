@@ -41,4 +41,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ContactsCollectorActivity.class);
         startActivity(intent);
     }
+
+    public void openPrimeSearch(View view) {
+        Intent intent = new Intent(this, PrimeSearchActivity.class);
+        startActivity(intent);
+    }
+
 }

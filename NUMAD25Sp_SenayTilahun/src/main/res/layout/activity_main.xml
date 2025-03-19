@@ -62,5 +62,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/button_prime_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/find_primes"
+        app:layout_constraintTop_toBottomOf="@id/button_quic_calc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="openPrimeSearch"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
